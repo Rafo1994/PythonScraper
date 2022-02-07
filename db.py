@@ -15,10 +15,10 @@ db_conn = pymysql.connect(host='localhost', user='user1', password='password1', 
 db_cur = db_conn.cursor()
 query = """CREATE TABLE IF NOT EXISTS njuskalo_table ( 
          PRODUCT_ID  CHAR(20) NOT NULL, 
-         LINK VARCHAR(64),
-         TITLE VARCHAR(64),
-         price_e  int(10), 
-         price  int(10) 
+         LINK LONGTEXT,
+         TITLE LONGTEXT,
+         price_e  VARCHAR(64), 
+         price  VARCHAR(64) 
          ) """
 
 db_cur.execute(query)

@@ -1,15 +1,7 @@
 {
   	"channel": "C1H9RESGL",
-  	"text": "New Paid Time Off request from Fred Enriquez",
+  	"text": "Novi stan!",
 	"blocks": [
-		{
-			"type": "header",
-			"text": {
-				"type": "plain_text",
-				"text": "New request",
-				"emoji": true
-			}
-		},
 		{
 			"type": "section",
 			"fields": [
