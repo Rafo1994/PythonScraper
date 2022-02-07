@@ -1,3 +1,5 @@
+import pymysql
+
 def find_between(file, first, last):
     try:
         start = file.index(first) + len(first)
@@ -22,6 +24,9 @@ def clear_whitespace (input_string):
     string = input_string.split()
     clean_string = "".join(string)
     return clean_string
+
+
+
 
 start = '<article class="entity-body cf">'
 end = '</article>'
