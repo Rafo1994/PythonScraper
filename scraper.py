@@ -111,8 +111,7 @@ while i < 11:
 
             data_json = json.dumps(data)
 
-            r = requests.post(webhook_url,
-                              data=data_json)
+            r = requests.post(webhook_url, data=data_json)
 
     deleted = delete_between(post_data, start, end)
     file = open("scraped.txt", "w")
