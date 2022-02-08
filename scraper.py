@@ -79,6 +79,7 @@ while i < 11:
         link_end = post_id + '">'
         title_start = link_end
 
+        # Get usefull info from scraped post
         link = find_between(single_post, link_start, link_end)
         title = find_between(single_post, title_start, title_end)
         price_e = find_between(single_post, price_start_e, price_end_e)
