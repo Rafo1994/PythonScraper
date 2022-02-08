@@ -30,7 +30,17 @@ def clear_whitespace (input_string):
     clean_string = "".join(string)
     return clean_string
 
+with open('config.yaml') as f:
+    config = yaml.load(stream=f, Loader=yaml.FullLoader)
 
+# DB info from config
+db_host = config['db_host']
+db_username = config['db_username']
+db_password = config['db_password']
+
+# Slack info from config
+channel_id = config['channel_id']
+webhook_url = config['webhook_url']
 
 
 start = '<article class="entity-body cf">'
@@ -51,7 +61,7 @@ price_end = price_end_e
 i = 0
 
 #Connect to DB
-connection = pymysql.connect(host='localhost', user='user1', password='password1', database='njuskalo')
+connection = pymysql.connect(host=db_host, user=db_username, password=db_password, database='njuskalo')
 cur = connection.cursor()
 
 while i < 11:
@@ -94,14 +104,14 @@ while i < 11:
 
             link_w = "<https://www.njuskalo.hr" + link + str(post_id) + "|" + title + ">"
             total_price = clean_price_e + "€" + " (" + clean_price + "kn)"
-            data = {'channel': 'C1H9RESGL', 'text': 'Novi stan!', 'blocks': [
+            data = {'channel': channel_id, 'text': 'Novi stan!', 'blocks': [
                 {'type': 'section',
                  'fields': [{'type': 'mrkdwn', 'text': link_w}, {'type': 'mrkdwn', 'text': total_price} ]},
             ]}
 
             data_json = json.dumps(data)
 
-            r = requests.post('https://hooks.slack.com/services/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',
+            r = requests.post(webhook_url,
                               data=data_json)
 
     deleted = delete_between(post_data, start, end)

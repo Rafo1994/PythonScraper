@@ -1,17 +1,25 @@
 import pymysql
+import yaml
 
-#Connect to MariaDB and create database
+with open('config.yaml') as f:
+    config = yaml.load(stream=f, Loader=yaml.FullLoader)
+# DB info from config
+db_host = config['db_host']
+db_username = config['db_username']
+db_password = config['db_password']
 
-conn = pymysql.connect(host='localhost', user='user1', password='password1')
+# Connect to MariaDB and create database
+
+conn = pymysql.connect(host=db_host, user=db_username, password=db_password)
 cur = conn.cursor()
 cur.execute("""CREATE DATABASE IF NOT EXISTS njuskalo""")
 conn.commit()
 conn.close()
 
 
-#Connect to MariaDB and create table
+# Connect to MariaDB and create table
 
-db_conn = pymysql.connect(host='localhost', user='user1', password='password1', database='njuskalo')
+db_conn = pymysql.connect(host=db_host, user=db_username, password=db_password, database='njuskalo')
 db_cur = db_conn.cursor()
 query = """CREATE TABLE IF NOT EXISTS njuskalo_table ( 
          PRODUCT_ID  CHAR(20) NOT NULL, 
