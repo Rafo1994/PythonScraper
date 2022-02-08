@@ -90,11 +90,11 @@ while i < 11:
             cur.execute(mySql_insert_query, record)
             connection.commit()
 
-            link_w = "<https://www.njuskalo.hr" + link + str(post_id) + "|Link>"
+            link_w = "<https://www.njuskalo.hr" + link + str(post_id) + "|" + title + ">"
             total_price = clean_price_e + "€" + " (" + clean_price + "kn)"
             data = {'channel': 'C1H9RESGL', 'text': 'Novi stan!', 'blocks': [
                 {'type': 'section',
-                 'fields': [{'type': 'mrkdwn', 'text': title}, {'type': 'mrkdwn', 'text': total_price},  {'type': 'mrkdwn', 'text': link_w} ]},
+                 'fields': [{'type': 'mrkdwn', 'text': link_w}, {'type': 'mrkdwn', 'text': total_price} ]},
             ]}
 
             data_json = json.dumps(data)
