@@ -1,0 +1,8 @@
+api_key: 0ad5cbd610bf4d2f9a32995f2804791d
+
+url_to_scrape: https://www.njuskalo.hr/iznajmljivanje-stanova?geo%5BlocationIds%5D=6566%2C6638%2C6643%2C6610%2C6578%2C6582&price%5Bmax%5D=450
+
+# Database info
+db_username: user1
+db_password: password1
+db_host: localhost
