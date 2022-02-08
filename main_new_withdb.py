@@ -1,6 +1,7 @@
 import pymysql
 import json
 import requests
+import os
 
 def find_between(file, first, last):
     try:
@@ -55,12 +56,12 @@ while i < 11:
     #Create text file for each post
 
     with open('scraped.txt', 'r') as file:
-        data = file.read()
+        post_data = file.read()
 
     if( i != 0 ):
 
         #get single post content (skips first because it's advertisement)
-        single_post = find_between(data, start, end)
+        single_post = find_between(post_data, start, end)
         post_id = find_between(single_post, id_start, id_end)
 
         link_end = post_id + '">'
@@ -89,22 +90,24 @@ while i < 11:
             cur.execute(mySql_insert_query, record)
             connection.commit()
 
-            with open('message.json') as json_file:
-                data = json.load(json_file)
+            link_w = "<https://www.njuskalo.hr" + link + str(post_id) + "|Link>"
+            total_price = clean_price_e + "€" + " (" + clean_price + "kn)"
+            data = {'channel': 'C1H9RESGL', 'text': 'Novi stan!', 'blocks': [
+                {'type': 'section',
+                 'fields': [{'type': 'mrkdwn', 'text': title}, {'type': 'mrkdwn', 'text': total_price},  {'type': 'mrkdwn', 'text': link_w} ]},
+            ]}
 
-                data['block']['text'] = 134  # <--- add `id` value.
-                json_file.seek(0)  # <--- should reset file position to the beginning.
-                json.dump(data, json_file, indent=4)
-                print(data)
+            data_json = json.dumps(data)
 
-            r = requests.post('https://hooks.slack.com/services/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', data=open('message.json', 'rb'))
+            r = requests.post('https://hooks.slack.com/services/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',
+                              data=data_json)
 
-
-
-    deleted = delete_between(data, start, end)
+    deleted = delete_between(post_data, start, end)
     file = open("scraped.txt", "w")
     file.write(deleted + "\n")
     i += 1
 
 #close DB connection
 cur.close()
+
+os.remove("scraped.txt")
