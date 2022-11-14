@@ -12,7 +12,7 @@ class DbConn:
         self.db_port = config["DB_PORT"]
         self.db_name = config["DB_NAME"]
 
-    def connectToDb(self):
+    def connection(self):
         self.conn = psycopg2.connect(
             host=self.db_host,
             database=self.db_name,
@@ -20,7 +20,7 @@ class DbConn:
             password=self.db_password,
             port=self.db_port
         )
-        return self.conn.cursor()
+        return self.conn
 
-    def closeConn(self):
-        return self.conn.close()
+    def cursor(self):
+        return self.dbConn().cursor()

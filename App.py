@@ -4,7 +4,7 @@ import DbConn
 class App:
 
     def __init__(self):
-        self.dbConn = DbConn.DbConn.connectToDb()
+        self.dbConn = DbConn.DbConn().connection()
 
     def createTable(self):
         query = """CREATE TABLE IF NOT EXISTS njuskalo_table ( 
@@ -14,7 +14,11 @@ class App:
                  price_e  VARCHAR(64), 
                  price  VARCHAR(64) 
                  ) """
-        return self.dbConn.execute(query)
+        self.dbConn.cursor().execute(query)
+        return self.dbConn.commit()
+
+
+print(App().createTable())
 
     #Call API and save it to self variable
 
