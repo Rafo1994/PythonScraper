@@ -2,13 +2,13 @@ FROM ubuntu
 
 WORKDIR /app
 
-RUN apt-get update && apt-get -y install cron && apt-get -y install python3 && apt-get -y install python3-pip
+RUN apt-get update && apt-get -y install cron && apt-get -y install python3 && apt-get -y install python3-pip && apt-get -y install libpq-dev && apt-get -y install python3-dev
 
 COPY requirements.txt ./
 
 RUN pip install -r requirements.txt
 
-COPY  ["create-cron.py", "api_scraper.py", "scraper.py", "db.py", ".env", "./"]
+COPY  * ./
 
 RUN python3 create-cron.py
 

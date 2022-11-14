@@ -1,3 +1,6 @@
 /scraped.txt
-/posts/
-/posts_clean/
+/cron-job
+venv
+docker-compose.yaml
+Dockerfile
+README.md

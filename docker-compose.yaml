@@ -1,22 +1,29 @@
 version: "3.9"
 services:
+  db:
+    container_name: postgres_container
+    image: postgres:15.0-alpine3.16
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - webnet
+
   app:
     build: .
-
-  db:
-    image: mysql:8.0
-    restart: always
     environment:
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PW}
-    ports:
-      - '3306:3306'
-    expose:
-      - '3306'
-    volumes:
-      - my-db:/var/lib/mysql
+      DB_HOST: db
+    networks:
+      - webnet
 
 volumes:
-  my-db:
+  postgres:
+
+networks:
+  webnet:
