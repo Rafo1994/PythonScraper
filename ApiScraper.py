@@ -3,13 +3,16 @@ from dotenv import dotenv_values
 
 class ApiScraper:
 
-    def __int__(self):
+    def __init__(self):
         config = dotenv_values()
         self.apiKey = config['API_KEY']
-        self.urk = config['URL_TO_SCRAPE']
+        self.url = config['URL_TO_SCRAPE']
 
+    def getApiKey(self):
+        config = dotenv_values()
+        return config['API_KEY']
     def getRequestUrl(self):
-        return {'api_key': self.api_key, 'url': self.url}
+        return {'api_key': self.apiKey, 'url': self.url}
 
     def sendRequest(self):
         return requests.post('http://api.scraperapi.com', params=self.getRequestUrl())
