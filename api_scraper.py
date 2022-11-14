@@ -1,11 +1,10 @@
 import requests
-import yaml
+from dotenv import dotenv_values
 
-with open('config.yaml') as f:
-    config = yaml.load(stream=f, Loader=yaml.FullLoader)
+config = dotenv_values()
 
-api_key = config['api_key']
-url = str(config['url_to_scrape'])
+api_key = config['API_KEY']
+url = config['URL_TO_SCRAPE']
 
 payload = {'api_key': api_key, 'url': url}
 
@@ -14,3 +13,5 @@ r = requests.post('http://api.scraperapi.com', params=payload)
 file = open("scraped.txt", "w+")
 
 file.write(r.text)
+
+file.close()
