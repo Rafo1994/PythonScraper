@@ -1,5 +1,6 @@
-import ApiScraper
 import DbConn
+import ApiScraper
+import ProcessData
 
 class App:
 
@@ -17,9 +18,11 @@ class App:
         self.dbConn.cursor().execute(query)
         return self.dbConn.commit()
 
+    # Call API and save it to self variable
+
 
 print(App().createTable())
 
-    #Call API and save it to self variable
+
 
     #Parse data with scraper.py (first refactor it to OOP)

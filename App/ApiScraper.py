@@ -15,4 +15,4 @@ class ApiScraper:
         return {'api_key': self.apiKey, 'url': self.url}
 
     def sendRequest(self):
-        return requests.post('http://api.scraperapi.com', params=self.getRequestUrl())
+        return requests.post('http://api.scraperapi.com', params=self.getRequestUrl()).text
