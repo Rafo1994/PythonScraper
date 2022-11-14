@@ -2,7 +2,7 @@
 api_key: 0ad5cbd610bf4d2f9a32995f2804791d
 
 # Njuškalo url to scrape
-url_to_scrape: https://www.njuskalo.hr/iznajmljivanje-stanova?geo%5BlocationIds%5D=6566%2C6638%2C6643%2C6610%2C6578%2C6582&price%5Bmax%5D=450
+url_to_scrape: https://www.njuskalo.hr/?ctl=search_ads&keywords=concept+2
 
 # Database info
 db_username: user1

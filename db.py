@@ -1,16 +1,20 @@
 import pymysql
 import yaml
+from dotenv import dotenv_values
 
-with open('config.yaml') as f:
-    config = yaml.load(stream=f, Loader=yaml.FullLoader)
+config = dotenv_values()
+
+#with open('config.yaml') as f:
+    #config = yaml.load(stream=f, Loader=yaml.FullLoader)
 # DB info from config
-db_host = config['db_host']
-db_username = config['db_username']
-db_password = config['db_password']
+db_host = config['DB_HOST']
+db_username = config['DB_USER']
+db_password = config['DB_PASSWORD']
 
 # Connect to MariaDB and create database
 
-conn = pymysql.connect(host=db_host, user=db_username, password=db_password)
+conn = pymysql.connect(host=db_host, database='njuskalo', user="root", password=db_password, port=3306)
+
 cur = conn.cursor()
 cur.execute("""CREATE DATABASE IF NOT EXISTS njuskalo""")
 conn.commit()
