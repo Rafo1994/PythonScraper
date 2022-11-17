@@ -15,4 +15,9 @@ class ApiScraper:
         return {'api_key': self.apiKey, 'url': self.url}
 
     def sendRequest(self):
-        return requests.post('http://api.scraperapi.com', params=self.getRequestUrl()).text
+        file = open("./test/scraped.txt", "w+")
+        r = requests.post('http://api.scraperapi.com', params=self.getRequestUrl()).text
+        file.write(r)
+
+        file.close()
+        return r
