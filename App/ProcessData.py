@@ -46,19 +46,19 @@ class ProcessData:
 
     def getArticleId(self):
         self.ID = self.findBetween(self.article, self.delimiters['id_start'], self.delimiters['id_end'])
-        self.finalArticle[self.ID] = { "ID": self.ID }
+        self.finalArticle["ID"] = self.ID
         self.delimiters["link_end"] = self.delimiters["title_start"] = self.ID + '">'
 
     def getArticleLink(self):
-        self.finalArticle[self.ID]['link'] = self.findBetween(self.article, self.delimiters['link_start'], self.delimiters['link_end'])
+        self.finalArticle['link'] = self.findBetween(self.article, self.delimiters['link_start'], self.delimiters['link_end'])
 
     def getArticleTitle(self):
-        self.finalArticle[self.ID]['title'] = self.findBetween(self.article, self.delimiters['title_start'], self.delimiters['title_end'])
+        self.finalArticle['title'] = self.findBetween(self.article, self.delimiters['title_start'], self.delimiters['title_end'])
 
     def getArticlePrice(self):
         price = self.findBetween(self.article, self.delimiters['price_start'], self.delimiters['price_end'])
-        self.finalArticle[self.ID]['price_kn'] = round(self.formatCurrency(price) * 7.5345, 2)
-        self.finalArticle[self.ID]['price'] = self.clear_whitespace(price)
+        self.finalArticle['price_kn'] = round(self.formatCurrency(price) * 7.5345, 2)
+        self.finalArticle['price'] = self.clear_whitespace(price)
 
     def getArticleInfo(self):
         self.getSingleArticle()

@@ -1,7 +1,10 @@
 import os
-import psycopg2
+
+import psycopg
 from dotenv import dotenv_values
+
 import Logger
+
 
 class Db:
 
@@ -14,9 +17,9 @@ class Db:
         self.db_name = config["DB_NAME"]
 
     def connection(self):
-        conn = psycopg2.connect(
+        conn = psycopg.connect(
             host=self.db_host,
-            database=self.db_name,
+            dbname=self.db_name,
             user=self.db_user,
             password=self.db_password,
             port=self.db_port
@@ -42,3 +45,17 @@ class Db:
             Logger.logger.error(e)
 
         return conn.commit()
+
+    def checkIfExists(self, productId):
+        query = """SELECT PRODUCT_ID, COUNT(*) FROM njuskalo_table WHERE PRODUCT_ID = %s GROUP BY PRODUCT_ID""", (productId)
+        try:
+            conn = self.connection()
+            try:
+                conn.cursor().execute(query)
+            except Exception as e:
+                Logger.logger.error(e)
+
+        except Exception as e:
+            Logger.logger.error(e)
+
+        return conn
