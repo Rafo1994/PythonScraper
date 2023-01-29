@@ -11,7 +11,7 @@ class ProcessData:
             'price_start': '<strong class="price price--hrk">',
             'price_end': '&nbsp;'
         }
-        self.article = self.findBetween( self.rawData, self.delimiters['article_start'], self.delimiters['article_end'])
+        self.article = self.findBetween(self.rawData, self.delimiters['article_start'], self.delimiters['article_end'])
         self.ID = ""
         self.finalArticle = {}
 
