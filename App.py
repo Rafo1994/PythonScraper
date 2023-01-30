@@ -1,5 +1,4 @@
 import Db
-import Logger
 import ApiScraper
 import ProcessData
 from SlackNotification import SlackNotification
