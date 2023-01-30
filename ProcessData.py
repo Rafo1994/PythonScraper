@@ -37,6 +37,7 @@ class ProcessData:
         clean_string = "".join(string)
         return clean_string
 
+    #method is used for testing only
     def getFile(self):
         with open('../scraped.txt', 'r') as file:
             return file.read()
