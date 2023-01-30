@@ -10,7 +10,7 @@ RUN pip install -r requirements.txt
 
 COPY  * ./
 
-RUN python3 create-cron.py
+RUN python3 CreateCron.py
 
 # Give execution rights on the cron job
 RUN chmod 0644 cron-job

@@ -2,7 +2,7 @@ import Db
 import Logger
 import ApiScraper
 import ProcessData
-import SlackNotification
+from SlackNotification import SlackNotification
 from dotenv import dotenv_values
 
 # Add logger for each process!
@@ -56,7 +56,7 @@ class App:
 
                 #send Slack message
 
-                SlackNotification.SlackNotification(article.get("ID"), article.get("link"), article.get("title"), self.chanelId, article.get("price"), self.webhookUrl ).sendNotification()
+                print(SlackNotification(article.get("ID"), article.get("link"), article.get("title"), self.chanelId, article.get("price"), self.webhookUrl ).sendNotification())
 
             # print(output_data)
             # Check if ID from output data exists in DB -> if YES continue and run deleteBetween method - if NO add it do DB and send a Slack message

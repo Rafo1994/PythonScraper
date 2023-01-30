@@ -58,7 +58,7 @@ i = 0
 while i < 11:
     #Create text file for each post
 
-    with open('scraped.txt', 'r') as file:
+    with open('../scraped.txt', 'r') as file:
         post_data = file.read()
 
     if( i != 0 ):
@@ -83,7 +83,7 @@ while i < 11:
 
 
     deleted = delete_between(post_data, start, end)
-    file = open("scraped.txt", "w")
+    file = open("../scraped.txt", "w")
     file.write(deleted + "\n")
     i += 1
 

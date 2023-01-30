@@ -1,3 +1,6 @@
+import json
+import requests
+
 class SlackNotification:
     def __init__(self, postId, link, title, channelId, totalPrice, webhookUrl):
         self.baseLink = "<https://www.njuskalo.hr"
@@ -12,15 +15,14 @@ class SlackNotification:
         return self.baseLink + self.link + self.postId + "|" + self.title + ">"
 
     def getNotificationBody(self):
-        body = {'channel': self.channelId, 'text': 'Novi stan!', 'blocks': [{'type': 'section',
-                                                                         'fields': [{'type': 'mrkdwn', 'text': self.getLink()},
-                                                                                    {'type': 'mrkdwn',
-                                                                                     'text': self.totalPrice}]}, ]}
+        body = {'text': 'Novi stan!', 'blocks': [{'type': 'section',
+                                                  'fields': [{'type': 'mrkdwn',
+                                                              'text': self.getLink()},
+                                                             {'type': 'mrkdwn',
+                                                              'text': self.totalPrice + '€'}]}, ]}
         return body
 
     def sendNotification(self):
-        import json
-        import requests
+
         dataJson = json.dumps(self.getNotificationBody())
-        requests.post(self.webhookUrl, data=dataJson)
-        #test if repsonse is ok and return something
+        return requests.post(self.webhookUrl, data=dataJson)

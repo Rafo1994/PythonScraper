@@ -10,7 +10,7 @@ payload = {'api_key': api_key, 'url': url}
 
 r = requests.post('http://api.scraperapi.com', params=payload)
 
-file = open("scraped.txt", "w+")
+file = open("../scraped.txt", "w+")
 
 file.write(r.text)
 
