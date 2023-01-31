@@ -1,9 +1,11 @@
-import Db
+from dotenv import dotenv_values
+
 import ApiScraper
+import Db
+import Logger
 import ProcessData
 from SlackNotification import SlackNotification
-from dotenv import dotenv_values
-import Logger
+
 
 # Add logger for each process!
 
@@ -49,13 +51,15 @@ class App:
                 query = """INSERT INTO njuskalo_table (product_id, link, title, price_e, price) 
                                                VALUES (%s, %s, %s, %s, %s) """
 
-                sqlParams = (article.get("ID"), article.get("link"), article.get("title"), article.get("price"), article.get("price_kn") )
+                sqlParams = (article.get("ID"), article.get("link"), article.get("title"), article.get("price"),
+                             article.get("price_kn"))
                 cur.execute(query, sqlParams)
                 self.conn.commit()
 
-                #send Slack message
+                # send Slack message
 
-                SlackNotification(article.get("ID"), article.get("link"), article.get("title"), article.get("price"), self.webhookUrl ).sendNotification()
+                SlackNotification(article.get("ID"), article.get("link"), article.get("title"), article.get("price"),
+                                  self.webhookUrl).sendNotification()
 
             # print(output_data)
             # Check if ID from output data exists in DB -> if YES continue and run deleteBetween method - if NO add it do DB and send a Slack message

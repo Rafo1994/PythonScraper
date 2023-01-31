@@ -1,5 +1,7 @@
 import json
+
 import requests
+
 
 class SlackNotification:
     def __init__(self, postId, link, title, totalPrice, webhookUrl):
@@ -22,6 +24,5 @@ class SlackNotification:
         return body
 
     def sendNotification(self):
-
         dataJson = json.dumps(self.getNotificationBody())
         return requests.post(self.webhookUrl, data=dataJson)
