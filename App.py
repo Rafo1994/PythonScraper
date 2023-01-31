@@ -3,6 +3,7 @@ import ApiScraper
 import ProcessData
 from SlackNotification import SlackNotification
 from dotenv import dotenv_values
+import Logger
 
 # Add logger for each process!
 
@@ -38,7 +39,7 @@ class App:
 
             # Change everything accordingly to connection in constructor
             article = processData.getArticleInfo()
-
+            Logger.logger.debug(i)
 
             cur = self.conn.cursor()
             query = """SELECT product_id, COUNT(*) FROM njuskalo_table WHERE product_id = %s GROUP BY product_id"""
@@ -54,7 +55,7 @@ class App:
 
                 #send Slack message
 
-                print(SlackNotification(article.get("ID"), article.get("link"), article.get("title"), article.get("price"), self.webhookUrl ).sendNotification())
+                SlackNotification(article.get("ID"), article.get("link"), article.get("title"), article.get("price"), self.webhookUrl ).sendNotification()
 
             # print(output_data)
             # Check if ID from output data exists in DB -> if YES continue and run deleteBetween method - if NO add it do DB and send a Slack message

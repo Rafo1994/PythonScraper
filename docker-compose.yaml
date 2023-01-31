@@ -16,7 +16,10 @@ services:
       - webnet
 
   app:
-    build: .
+    build:
+      context: .
+      args:
+        DB_HOST: db
     environment:
       DB_HOST: db
     networks:

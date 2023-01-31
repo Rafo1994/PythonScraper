@@ -10,7 +10,7 @@ class Db:
 
     def __init__(self):
         config = dotenv_values()
-        self.db_host = os.environ['DB_HOST']
+        self.db_host = os.getenv('DB_HOST')
         self.db_user = config['DB_USER']
         self.db_password = config['DB_PASSWORD']
         self.db_port = config["DB_PORT"]
