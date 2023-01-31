@@ -47,7 +47,8 @@ class Db:
         return conn.commit()
 
     def checkIfExists(self, productId):
-        query = """SELECT PRODUCT_ID, COUNT(*) FROM njuskalo_table WHERE PRODUCT_ID = %s GROUP BY PRODUCT_ID""", (productId)
+        query = """SELECT PRODUCT_ID, COUNT(*) FROM njuskalo_table WHERE PRODUCT_ID = %s GROUP BY PRODUCT_ID""", (
+            productId)
         try:
             conn = self.connection()
             try:

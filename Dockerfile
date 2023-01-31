@@ -15,9 +15,6 @@ RUN python3 CreateCron.py
 
 RUN chmod 0644 /etc/cron.d/crontab
 RUN chmod +x /app/entry.sh
-RUN chmod +x /app/cron-script.sh
 RUN /usr/bin/crontab /etc/cron.d/crontab
 
-#RUN printenv | grep 'DB_HOST' >> /etc/environment
-# run crond as main process of container
 CMD ["/app/entry.sh"]
