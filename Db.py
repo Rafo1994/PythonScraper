@@ -10,7 +10,7 @@ class Db:
 
     def __init__(self):
         config = dotenv_values()
-        self.db_host = os.environ['DB_HOST']
+        self.db_host = os.getenv('DB_HOST')
         self.db_user = config['DB_USER']
         self.db_password = config['DB_PASSWORD']
         self.db_port = config["DB_PORT"]
@@ -47,7 +47,8 @@ class Db:
         return conn.commit()
 
     def checkIfExists(self, productId):
-        query = """SELECT PRODUCT_ID, COUNT(*) FROM njuskalo_table WHERE PRODUCT_ID = %s GROUP BY PRODUCT_ID""", (productId)
+        query = """SELECT PRODUCT_ID, COUNT(*) FROM njuskalo_table WHERE PRODUCT_ID = %s GROUP BY PRODUCT_ID""", (
+            productId)
         try:
             conn = self.connection()
             try:

@@ -11,13 +11,9 @@ class ApiScraper:
     def getApiKey(self):
         config = dotenv_values()
         return config['API_KEY']
+
     def getRequestUrl(self):
         return {'api_key': self.apiKey, 'url': self.url}
 
     def sendRequest(self):
-        file = open("./test/scraped.txt", "w+")
-        r = requests.post('http://api.scraperapi.com', params=self.getRequestUrl()).text
-        file.write(r)
-
-        file.close()
-        return r
+        return requests.post('http://api.scraperapi.com', params=self.getRequestUrl()).text

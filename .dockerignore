@@ -1,0 +1,6 @@
+log
+test
+examples
+venv
+.env.example
+cron-job

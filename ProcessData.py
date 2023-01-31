@@ -37,6 +37,7 @@ class ProcessData:
         clean_string = "".join(string)
         return clean_string
 
+    # method is used for testing only
     def getFile(self):
         with open('../scraped.txt', 'r') as file:
             return file.read()
@@ -50,10 +51,12 @@ class ProcessData:
         self.delimiters["link_end"] = self.delimiters["title_start"] = self.ID + '">'
 
     def getArticleLink(self):
-        self.finalArticle['link'] = self.findBetween(self.article, self.delimiters['link_start'], self.delimiters['link_end'])
+        self.finalArticle['link'] = self.findBetween(self.article, self.delimiters['link_start'],
+                                                     self.delimiters['link_end'])
 
     def getArticleTitle(self):
-        self.finalArticle['title'] = self.findBetween(self.article, self.delimiters['title_start'], self.delimiters['title_end'])
+        self.finalArticle['title'] = self.findBetween(self.article, self.delimiters['title_start'],
+                                                      self.delimiters['title_end'])
 
     def getArticlePrice(self):
         price = self.findBetween(self.article, self.delimiters['price_start'], self.delimiters['price_end'])
