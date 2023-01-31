@@ -1,6 +1,0 @@
-[
-  {
-    "schedule": "@every 1m",
-    "command": "/usr/bin/python3 /app/App.py"
-  }
-]
