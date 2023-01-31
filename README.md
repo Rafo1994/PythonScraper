@@ -4,10 +4,7 @@ Python scraper for Njuškalo
 
 # Instalation
 1. Clone repo 
-2. Rename .env.example to .env and fill missing info (add info about Njuškalo link and ScraperAPI)
+2. Rename .env.example to .env and fill missing info (add info about Njuškalo link and ScraperAPI and Slack)
 3. Install Docker and Docker Compose ([See instructions](https://docs.docker.com/engine/install/))
-4. 
-
-To create DB for storing scraped posts run
-
-```python3 db.py```
+4. If you are not running containers as root (and you shouldn't) make sure that user has capatibilities to run Docker ([See instructions](https://docs.docker.com/engine/install/linux-postinstall/))
+5. Run Docker Compose with: `docker-compose up --build -d`
