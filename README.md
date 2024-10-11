@@ -2,7 +2,7 @@
 
 Python scraper for Njuškalo
 
-# Instalation
+# Installation
 1. Clone repo 
 2. Rename .env.example to .env and fill missing info (add info about Njuškalo link and ScraperAPI and Slack)
 3. Install Docker and Docker Compose ([See instructions](https://docs.docker.com/engine/install/))
